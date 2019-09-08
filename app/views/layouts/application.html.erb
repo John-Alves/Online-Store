@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Loja Online</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="skin-default-dark fixed-layout">
+    <div id="main-wrapper">
+      <div class="page-wrapper">
+        <div class="container-fluid">
+          <%= render partial: 'layouts/shared/header' %>
+          <%= render partial: 'layouts/shared/sidebar' %>
+
+          <div class="page-wrapper">
+            <div class="container-fluid">
+              <div class="row page-titles">
+                <%= yield %>
+              </div>
+            </div>
+          </div>
+
+          <%= render partial: 'layouts/shared/footer' %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
