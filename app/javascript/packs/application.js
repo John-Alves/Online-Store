@@ -11,7 +11,7 @@ require("channels");
 import "bootstrap";
 import "@fortawesome/fontawesome-free/js/all";
 // Why this is necessary? Shouldn't stylesheet_pack_tag do this work? I really don't know!
-import "../stylesheets/application";
+import "../stylesheets/application.scss";
 
 document.addEventListener('turbolinks:load', () => {
     $('[data-toggle="tooltip"]').tooltip();

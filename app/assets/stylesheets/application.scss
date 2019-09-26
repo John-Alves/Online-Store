@@ -1,0 +1,46 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_self
+ *
+ * Importing font awesome
+ *= require icons/font-awesome/css/font-awesome
+ */
+
+/* TEMPLATE ADJUSTMENTS */
+// Installing template custom fonts
+@font-face {
+  font-family: 'icomoon';
+  src: font-url("icomoon.ttf?-rdmvgc") format("truetype");
+}
+@font-face {
+  font-family: 'simple-line-icons';
+  src: font-url('Simple-Line-Icons.ttf?-i3a2kk') format('truetype');
+}
+@font-face {
+  font-family: 'themify';
+  src: font-url('themify.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'FontAwesome';
+  src: font-url('fontawesome-webfont.ttf?v=4.7.0') format('truetype');
+}
+@font-face {
+  font-family: 'Material Design Icons';
+  src: font-url('materialdesignicons-webfont.ttf') format('truetype');
+}
+
+// This line is necessary because template header section is not being used.
+.page-wrapper {
+  padding-top: 0 !important;
+}
+/* END ADJUSTMENTS */
