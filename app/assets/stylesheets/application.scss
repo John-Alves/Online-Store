@@ -16,6 +16,14 @@
  *= require icons/font-awesome/css/font-awesome
  */
 
+@import "template/scss/style";
+
+.card-subtitle.card-subtitle-no-result {
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+
 /* TEMPLATE ADJUSTMENTS */
 // Installing template custom fonts
 @font-face {
