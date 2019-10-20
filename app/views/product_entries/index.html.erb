@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Product Entries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Payment date</th>
+      <th>Forecast receipt date</th>
+      <th>Receipt date</th>
+      <th>Amount</th>
+      <th>Price</th>
+      <th>Observation</th>
+      <th>Product</th>
+      <th>Supplier</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @product_entries.each do |product_entry| %>
+      <tr>
+        <td><%= product_entry.payment_date %></td>
+        <td><%= product_entry.forecast_receipt_date %></td>
+        <td><%= product_entry.receipt_date %></td>
+        <td><%= product_entry.amount %></td>
+        <td><%= product_entry.price %></td>
+        <td><%= product_entry.observation %></td>
+        <td><%= product_entry.product_id %></td>
+        <td><%= product_entry.supplier_id %></td>
+        <td><%= link_to 'Show', product_entry %></td>
+        <td><%= link_to 'Edit', edit_product_entry_path(product_entry) %></td>
+        <td><%= link_to 'Destroy', product_entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Product Entry', new_product_entry_path %>

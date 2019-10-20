@@ -1,0 +1,57 @@
+<%= form_with(model: product_entry, local: true) do |form| %>
+  <% if product_entry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(product_entry.errors.count, "error") %> prohibited this product_entry from being saved:</h2>
+
+      <ul>
+        <% product_entry.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :payment_date %>
+    <%= form.text_field :payment_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :forecast_receipt_date %>
+    <%= form.date_select :forecast_receipt_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :receipt_date %>
+    <%= form.date_select :receipt_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :amount %>
+    <%= form.number_field :amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :observation %>
+    <%= form.text_field :observation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :product_id %>
+    <%= form.text_field :product_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :supplier_id %>
+    <%= form.text_field :supplier_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

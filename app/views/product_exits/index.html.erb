@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Product Exits</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Amount</th>
+      <th>Price</th>
+      <th>Observation</th>
+      <th>Comission</th>
+      <th>Product</th>
+      <th>Seller</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @product_exits.each do |product_exit| %>
+      <tr>
+        <td><%= product_exit.amount %></td>
+        <td><%= product_exit.price %></td>
+        <td><%= product_exit.observation %></td>
+        <td><%= product_exit.comission %></td>
+        <td><%= product_exit.product_id %></td>
+        <td><%= product_exit.seller_id %></td>
+        <td><%= link_to 'Show', product_exit %></td>
+        <td><%= link_to 'Edit', edit_product_exit_path(product_exit) %></td>
+        <td><%= link_to 'Destroy', product_exit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Product Exit', new_product_exit_path %>

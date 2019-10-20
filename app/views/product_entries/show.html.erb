@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Payment date:</strong>
+  <%= @product_entry.payment_date %>
+</p>
+
+<p>
+  <strong>Forecast receipt date:</strong>
+  <%= @product_entry.forecast_receipt_date %>
+</p>
+
+<p>
+  <strong>Receipt date:</strong>
+  <%= @product_entry.receipt_date %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @product_entry.amount %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @product_entry.price %>
+</p>
+
+<p>
+  <strong>Observation:</strong>
+  <%= @product_entry.observation %>
+</p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @product_entry.product_id %>
+</p>
+
+<p>
+  <strong>Supplier:</strong>
+  <%= @product_entry.supplier_id %>
+</p>
+
+<%= link_to 'Edit', edit_product_entry_path(@product_entry) %> |
+<%= link_to 'Back', product_entries_path %>

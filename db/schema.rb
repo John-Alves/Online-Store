@@ -10,13 +10,85 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_29_133722) do
+ActiveRecord::Schema.define(version: 2019_10_20_175352) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
     t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "product_balances", force: :cascade do |t|
+    t.integer "amount"
+    t.bigint "product_entry_id"
+    t.bigint "product_exit_id"
+    t.bigint "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_entry_id"], name: "index_product_balances_on_product_entry_id"
+    t.index ["product_exit_id"], name: "index_product_balances_on_product_exit_id"
+    t.index ["product_id"], name: "index_product_balances_on_product_id"
+  end
+
+  create_table "product_entries", force: :cascade do |t|
+    t.string "payment_date"
+    t.date "forecast_receipt_date"
+    t.date "receipt_date"
+    t.integer "amount"
+    t.decimal "price"
+    t.string "observation"
+    t.bigint "product_id", null: false
+    t.bigint "supplier_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_product_entries_on_product_id"
+    t.index ["supplier_id"], name: "index_product_entries_on_supplier_id"
+  end
+
+  create_table "product_exits", force: :cascade do |t|
+    t.integer "amount"
+    t.decimal "price"
+    t.string "observation"
+    t.decimal "comission"
+    t.bigint "product_id", null: false
+    t.bigint "seller_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_product_exits_on_product_id"
+    t.index ["seller_id"], name: "index_product_exits_on_seller_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.decimal "comission"
+    t.bigint "category_id"
+    t.bigint "subcategory_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["subcategory_id"], name: "index_products_on_subcategory_id"
+  end
+
+  create_table "sellers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "subcategories", force: :cascade do |t|
+    t.string "description"
+    t.bigint "category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_subcategories_on_category_id"
+  end
+
+  create_table "suppliers", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -38,4 +110,14 @@ ActiveRecord::Schema.define(version: 2019_09_29_133722) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "product_balances", "product_entries"
+  add_foreign_key "product_balances", "product_exits"
+  add_foreign_key "product_balances", "products"
+  add_foreign_key "product_entries", "products"
+  add_foreign_key "product_entries", "suppliers"
+  add_foreign_key "product_exits", "products"
+  add_foreign_key "product_exits", "sellers"
+  add_foreign_key "products", "categories"
+  add_foreign_key "products", "subcategories"
+  add_foreign_key "subcategories", "categories"
 end
