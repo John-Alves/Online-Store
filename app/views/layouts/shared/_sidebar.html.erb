@@ -18,52 +18,14 @@
     <!-- Sidebar navigation-->
     <nav class="sidebar-nav">
       <ul id="sidebarnav">
-
         <li>
-          <%= link_to product_exits_path, class: 'waves-effect waves-dark', 'aria-expanded': 'false' do %>
-            <span class="hide-menu">Saída de Produtos</span>
+          <%= link_to root_path, class: 'waves-effect waves-dark', 'aria-expanded': 'false' do %>
+            <span class="hide-menu">Inicio</span>
           <% end %>
         </li>
-
-        <li>
-          <%= link_to product_entries_path, class: 'waves-effect waves-dark', 'aria-expanded': 'false' do %>
-            <span class="hide-menu">Entrada de Produtos</span>
-          <% end %>
-        </li>
-
-        <li>
-          <%= link_to products_path, class: 'waves-effect waves-dark', 'aria-expanded': 'false' do %>
-            <span class="hide-menu">Produtos</span>
-          <% end %>
-        </li>
-
-        <li>
-          <%= link_to sellers_path, class: 'waves-effect waves-dark', 'aria-expanded': 'false' do %>
-            <span class="hide-menu">Vendedores</span>
-          <% end %>
-        </li>
-
-        <li>
-          <%= link_to suppliers_path, class: 'waves-effect waves-dark', 'aria-expanded': 'false' do %>
-            <span class="hide-menu">Fornecedores</span>
-          <% end %>
-        </li>
-
-        <li>
-          <%= link_to categories_path, class: 'waves-effect waves-dark', 'aria-expanded': 'false' do %>
-            <span class="hide-menu">Categorias</span>
-          <% end %>
-        </li>
-
-        <li>
-          <%= link_to subcategories_path, class: 'waves-effect waves-dark', 'aria-expanded': 'false' do %>
-            <span class="hide-menu">Subcategorias</span>
-          <% end %>
-        </li>
-
         <div class="text-center m-t-30">
           <%= link_to 'Sair', destroy_user_session_path, style:"width: 50%;",
-                      class: 'btn waves-effect waves-light btn-danger hidden-md-down', 'aria-expanded': 'false' %>
+                      class: 'btn waves-effect waves-light btn-danger', 'aria-expanded': 'false' %>
         </div>
       </ul>
     </nav>
