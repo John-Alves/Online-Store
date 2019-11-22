@@ -1,5 +1,9 @@
-<h1>New Subcategory</h1>
-
-<%= render 'form', subcategory: @subcategory %>
-
-<%= link_to 'Back', subcategories_path %>
+<%
+  page_title = 'Nova Subcategoria'
+  page_path = [
+      { name: 'Inicio', link: root_path },
+      { name: 'Nova Subcategoria', link: '' },
+  ]
+%>
+<%= page_header_helper(page_title, page_path) %>
+<%= render 'form', subcategory: @subcategory, url: subcategories_path %>

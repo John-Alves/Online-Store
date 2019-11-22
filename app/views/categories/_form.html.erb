@@ -1,22 +1,37 @@
-<%= form_with(model: category, local: true) do |form| %>
-  <% if category.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
+<% if category.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
 
-      <ul>
-        <% category.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+    <ul>
+      <% category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
   </div>
 <% end %>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <%= form_with(model: category, method:'post', url: url, local: true, class:'form-material') do |f| %>
+          <%= hidden_field_tag :id, category.id %>
+
+          <div class="row">
+            <div class="form-group col-md-8">
+              <%= f.label :description, "Descrição" %><br />
+              <%= f.text_field :description, class: 'form-control form-control-line' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= link_to 'Voltar', products_path, class: 'btn btn-secondary waves-effect waves-light m-r-10' %>
+            <%= button_tag "Salvar", class: 'btn btn-info waves-effect waves-light m-r-10' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+

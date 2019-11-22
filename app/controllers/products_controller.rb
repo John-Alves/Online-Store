@@ -1,10 +1,12 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :get_categories, only: [:index, :new, :edit]
+  before_action :get_subcategories, only: [:index, :new, :edit]
 
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @products = Product.includes(:category, :subcategory).all
   end
 
   # GET /products/1
@@ -62,13 +64,20 @@ class ProductsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_product
-      @product = Product.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def product_params
-      params.require(:product).permit(:title, :description, :comission, :category_id, :subcategory_id)
-    end
+  def get_categories
+    @categories = Category.all
+  end
+
+  def get_subcategories
+    @subcategories = Subcategory.all
+  end
+
+  def set_product
+    @product = Product.find(params[:id])
+  end
+
+  def product_params
+    params.require(:product).permit(:title, :description, :comission, :category_id, :subcategory_id)
+  end
 end

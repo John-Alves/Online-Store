@@ -1,35 +1,69 @@
-<p id="notice"><%= notice %></p>
+<%
+  page_title = "Produtos"
+  page_path = [
+      { name: 'Inicio', link: root_path },
+      { name: 'Produtos', link: root_path },
+  ]
+  button = {
+      link: new_product_path,
+      class: 'btn btn-info m-l-15',
+      content: '<i class="fa fa-plus-circle"></i> Criar'.html_safe
+  }
+%>
+<%= page_header_helper(page_title, page_path, button) %>
 
-<h1>Products</h1>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Titulo</th>
+              <th>Descrição</th>
+              <th>Categoria</th>
+              <th>Subcategoria</th>
+              <th colspan="3"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% if @products.length > 0 %>
+              <% @products.each do |product| %>
+                <tr>
+                  <td><%= product.title %></td>
+                  <td><%= product.description %></td>
+                  <td><%= product.category.description %></td>
+                  <td><%= product.subcategory.description %></td>
+                  <td width="10">
+                    <%= link_to edit_product_path(product), class: 'btn btn-sm btn-outline-info',
+                                'data-toggle': "tooltip", 'data-placement':"bottom", title: "Editar" do %>
+                      <i class="fa fa-edit"></i>
+                    <% end %>
+                  </td>
+                  <td width="10">
+                    <%= link_to product, class: "btn btn-sm btn-danger",
+                                method: :delete, data: { confirm: 'Deseja excluir esse produto?' },
+                                'data-toggle': "tooltip", 'data-placement':"bottom", title: "Excluir" do %>
+                      <i class="fa fa-trash"></i>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            <% else %>
+              <tr>
+                <td colspan="10">
+                  <h6 class="card-subtitle card-subtitle-no-result">
+                    Nenhum produto foi encontrado.
+                  </h6>
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Comission</th>
-      <th>Category</th>
-      <th>Subcategory</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @products.each do |product| %>
-      <tr>
-        <td><%= product.title %></td>
-        <td><%= product.description %></td>
-        <td><%= product.comission %></td>
-        <td><%= product.category_id %></td>
-        <td><%= product.subcategory_id %></td>
-        <td><%= link_to 'Show', product %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Product', new_product_path %>

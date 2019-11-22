@@ -1,10 +1,11 @@
 class SubcategoriesController < ApplicationController
   before_action :set_subcategory, only: [:show, :edit, :update, :destroy]
+  before_action :get_categories, only: [:index, :new, :edit]
 
   # GET /subcategories
   # GET /subcategories.json
   def index
-    @subcategories = Subcategory.all
+    @subcategories = Subcategory.includes(:category).all
   end
 
   # GET /subcategories/1
@@ -62,13 +63,16 @@ class SubcategoriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_subcategory
-      @subcategory = Subcategory.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def subcategory_params
-      params.require(:subcategory).permit(:description, :category_id)
-    end
+  def get_categories
+    @categories = Category.all
+  end
+
+  def set_subcategory
+    @subcategory = Subcategory.find(params[:id])
+  end
+
+  def subcategory_params
+    params.require(:subcategory).permit(:description, :category_id)
+  end
 end

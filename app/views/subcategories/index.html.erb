@@ -1,29 +1,66 @@
-<p id="notice"><%= notice %></p>
+<%
+  page_title = "Subcategorias"
+  page_path = [
+      { name: 'Inicio', link: root_path },
+      { name: 'Subcategorias', link: root_path },
+  ]
+  button = {
+      link: new_subcategory_path,
+      class: 'btn btn-info m-l-15',
+      content: '<i class="fa fa-plus-circle"></i> Criar'.html_safe
+  }
+%>
+<%= page_header_helper(page_title, page_path, button) %>
 
-<h1>Subcategories</h1>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Descrição</th>
+              <th>Categoria</th>
+              <th colspan="3"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% if @subcategories.length > 0 %>
+              <% @subcategories.each do |subcategory| %>
+                <tr>
+                  <td><%= subcategory.description %></td>
+                  <td><%= subcategory.category.description %></td>
+                  <td width="10">
+                    <%= link_to edit_subcategory_path(subcategory), class: 'btn btn-sm btn-outline-info',
+                                'data-toggle': "tooltip", 'data-placement':"bottom", title: "Editar" do %>
+                      <i class="fa fa-edit"></i>
+                    <% end %>
+                  </td>
+                  <td width="10">
+                    <%= link_to subcategory, class: "btn btn-sm btn-danger",
+                                method: :delete, data: { confirm: 'Deseja excluir essa subcategoria?' },
+                                'data-toggle': "tooltip", 'data-placement':"bottom", title: "Excluir" do %>
+                      <i class="fa fa-trash"></i>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            <% else %>
+              <tr>
+                <td colspan="10">
+                  <h6 class="card-subtitle card-subtitle-no-result">
+                    Nenhuma subcategoria foi encontrada.
+                  </h6>
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Category</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @subcategories.each do |subcategory| %>
-      <tr>
-        <td><%= subcategory.description %></td>
-        <td><%= subcategory.category_id %></td>
-        <td><%= link_to 'Show', subcategory %></td>
-        <td><%= link_to 'Edit', edit_subcategory_path(subcategory) %></td>
-        <td><%= link_to 'Destroy', subcategory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Subcategory', new_subcategory_path %>
