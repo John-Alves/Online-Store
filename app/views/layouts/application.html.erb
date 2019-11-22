@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Loja Online</title>
+    <title>Rails Template</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -12,23 +12,23 @@
   </head>
 
   <body class="skin-default-dark fixed-layout">
+    <%= render partial: 'layouts/shared/header' %>
 
-  <%= render partial: 'layouts/shared/header' %>
+    <%= render partial: 'layouts/shared/sidebar' %>
 
-  <%= render partial: 'layouts/shared/sidebar' %>
+    <div id="main-wrapper">
+      <div class="blank-space hidden-sm-up"></div>
 
-  <div id="main-wrapper">
-    <div class="blank-space hidden-sm-up"></div>
+      <div class="page-wrapper">
+        <%= configure_and_display_flash_messages %>
 
-    <div class="page-wrapper">
-      <%= configure_and_display_flash_messages %>
-
-      <div class="container-fluid">
-        <%= yield %>
+        <div class="container-fluid">
+          <%= yield %>
+        </div>
       </div>
     </div>
-  </div>
-
-  <%= render partial: 'layouts/shared/footer' %>
+    <br>
+    <br>
+    <%= render partial: 'layouts/shared/footer' %>
   </body>
 </html>

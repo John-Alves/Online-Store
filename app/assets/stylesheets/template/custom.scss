@@ -9,7 +9,7 @@ body {
   background-color: white !important;
 }
 footer {
-  position: fixed !important;
+  position: absolute !important;
   background-color: #29568c;
   color: white;
 }
@@ -42,4 +42,6 @@ footer {
   .justify-content-end {
     justify-content: flex-start !important;
   }
+}
+.breadcrumb-navigator{
 }
