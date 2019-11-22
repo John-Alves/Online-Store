@@ -1,23 +1,60 @@
-// This file is automatically compiled by Webpack, along with any other files
-// present in this directory. You're encouraged to place your actual application logic in
-// a relevant structure within app/javascript and only use these pack files to reference
-// that code so it'll be compiled.
 require("@rails/ujs").start();
 require("turbolinks").start();
 require("@rails/activestorage").start();
 require("channels");
 
 import "bootstrap";
-// import "@fortawesome/fontawesome-free/js/all";
 
 document.addEventListener('turbolinks:load', () => {
-    $('[data-toggle="tooltip"]').tooltip();
-    $('[data-toggle="popover"]').popover();
+    require("./template/custom");
+    require("./template/perfect-scrollbar.jquery.min");
+    require("./template/sidebarmenu");
+    require("./template/waves");
+
+    $(function() {
+        $(".preloader").fadeOut();
+    });
+    $(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+
+    setJqueryThemeEvents();
 });
 
-// Uncomment to copy all static images under ../images to the output folder and reference
-// them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
-// or the `imagePath` JavaScript helper below.
-//
-// const images = require.context('../images', true)
-// const imagePath = (name) => images(name, true)
+function setJqueryThemeEvents() {
+    $('#to-recover').on("click", function() {
+        $("#loginform").slideUp();
+        $("#recoverform").fadeIn();
+    });
+
+    $(".sidebartoggler").on('click', function() {
+        $("body").toggleClass("mini-sidebar");
+    });
+    // this is for close icon when navigation open in mobile view
+    $(".nav-toggler").on('click', function() {
+        $("body").toggleClass("show-sidebar");
+        $(".nav-toggler i").toggleClass("ti-menu");
+    });
+    $(".nav-lock").on('click', function() {
+        $("body").toggleClass("lock-nav");
+        $(".nav-lock i").toggleClass("mdi-toggle-switch-off");
+        $("body, .page-wrapper").trigger("resize");
+    });
+    $(".search-box a, .search-box .app-search .srh-btn").on('click', function() {
+        $(".app-search").toggle(200);
+        $(".app-search input").focus();
+    });
+    // ==============================================================
+    // Right sidebar options
+    // ==============================================================
+    $(".right-side-toggle").click(function() {
+        $(".right-sidebar").slideDown(50);
+        $(".right-sidebar").toggleClass("shw-rside");
+    });
+    // ==============================================================
+    // This is for the floating labels
+    // ==============================================================
+    $('.floating-labels .form-control').on('focus blur', function(e) {
+        $(this).parents('.form-group').toggleClass('focused', (e.type === 'focus' || this.value.length > 0));
+    }).trigger('blur');
+}

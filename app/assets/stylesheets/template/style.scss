@@ -8,22 +8,18 @@ File: scss
 
 @import 'colors/default-dark';
 
+@import "fonts/themify-icons/themify-icons";
+
 // Import Bootstrap source files
 @import "plugins/bootstrap/bootstrap";
 
-//This is for the icons
-//icons/font-awesome/css/font-awesome
-//@import '../../icons/font-awesome/css/font-awesome.min.css';
-//@import 'plugins/font-awesome/font-awesome';
-//@import '../../icons/themify-icons/themify-icons.css';
-
-
 //This is the core files
-
 @import 'core/core';
 @import 'widgets/widgets';
 @import 'responsive';
 
+// Importing template pages
+@import "pages/login-register-lock";
 
 //In This scss you can write your scss
 @import 'custom'; 

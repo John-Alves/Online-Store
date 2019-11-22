@@ -23,7 +23,6 @@
             line-height: 65px; 
             padding-left: 15px;
             min-width: 70px;
-            border-right: 1px solid rgba(0, 0, 0, 0.1);
             .navbar-brand {
                 margin-right: 0px;
                 padding-bottom: 0px;
@@ -43,6 +42,7 @@
             padding-right: 15px;
             font-size: 18px;
             line-height: 50px;
+            color: white !important;
         }
         .navbar-nav>.nav-item>span {
             line-height: 45px;
