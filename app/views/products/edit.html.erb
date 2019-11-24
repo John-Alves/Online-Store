@@ -1,6 +1,9 @@
-<h1>Editing Product</h1>
-
-<%= render 'form', product: @product %>
-
-<%= link_to 'Show', @product %> |
-<%= link_to 'Back', products_path %>
+<%
+  page_title = 'Editar Produto'
+  page_path = [
+      { name: 'Inicio', link: root_path },
+      { name: 'Editar Produto', link: '' },
+  ]
+%>
+<%= page_header_helper(page_title, page_path) %>
+<%= render 'form', product: @product, url: products_edit_path %>

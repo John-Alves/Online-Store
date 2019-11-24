@@ -1,6 +1,9 @@
-<h1>Editing Supplier</h1>
-
-<%= render 'form', supplier: @supplier %>
-
-<%= link_to 'Show', @supplier %> |
-<%= link_to 'Back', suppliers_path %>
+<%
+  page_title = 'Editar Fornecedor'
+  page_path = [
+      { name: 'Inicio', link: root_path },
+      { name: 'Editar Fornecedor', link: '' },
+  ]
+%>
+<%= page_header_helper(page_title, page_path) %>
+<%= render 'form', supplier: @supplier, url: suppliers_edit_path %>

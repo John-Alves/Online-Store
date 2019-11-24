@@ -24,8 +24,13 @@
           <% end %>
         </li>
         <li>
+          <%= link_to product_exits_path, class: 'waves-effect waves-dark', 'aria-expanded': 'false' do %>
+            <span class="hide-menu">Venda de Produtos</span>
+          <% end %>
+        </li>
+        <li>
           <%= link_to product_entries_path, class: 'waves-effect waves-dark', 'aria-expanded': 'false' do %>
-            <span class="hide-menu">Entrada de Produtos</span>
+            <span class="hide-menu">Compra de Produtos</span>
           <% end %>
         </li>
         <li>
