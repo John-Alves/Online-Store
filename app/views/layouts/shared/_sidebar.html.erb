@@ -24,34 +24,47 @@
           <% end %>
         </li>
         <li>
-          <%= link_to product_exits_path, class: 'waves-effect waves-dark', 'aria-expanded': 'false' do %>
-            <span class="hide-menu">Venda de Produtos</span>
+          <%= link_to root_path, class: 'waves-effect waves-dark', 'aria-expanded': 'false' do %>
+            <span class="hide-menu">Dashboard</span>
           <% end %>
         </li>
         <li>
-          <%= link_to product_entries_path, class: 'waves-effect waves-dark', 'aria-expanded': 'false' do %>
-            <span class="hide-menu">Compra de Produtos</span>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to products_path, class: 'waves-effect waves-dark', 'aria-expanded': 'false' do %>
-            <span class="hide-menu">Produtos</span>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to suppliers_path, class: 'waves-effect waves-dark', 'aria-expanded': 'false' do %>
-            <span class="hide-menu">Fornecedores</span>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to categories_path, class: 'waves-effect waves-dark', 'aria-expanded': 'false' do %>
-            <span class="hide-menu">Categorias</span>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to subcategories_path, class: 'waves-effect waves-dark', 'aria-expanded': 'false' do %>
-            <span class="hide-menu">Subcategorias</span>
-          <% end %>
+          <a class="has-arrow waves-effect waves-dark active" href="javascript:void(0)" aria-expanded="false">
+            <i class="icon-speedometer"></i>
+            <span class="hide-menu">Estoque</span>
+          </a>
+          <ul aria-expanded="false" class="collapse in">
+            <li>
+              <%= link_to product_exits_path, class: 'waves-effect waves-dark', 'aria-expanded': 'false' do %>
+                <span class="hide-menu">Saida de Produtos</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to product_entries_path, class: 'waves-effect waves-dark', 'aria-expanded': 'false' do %>
+                <span class="hide-menu">Entrada de Produtos</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to products_path, class: 'waves-effect waves-dark', 'aria-expanded': 'false' do %>
+                <span class="hide-menu">Produtos</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to suppliers_path, class: 'waves-effect waves-dark', 'aria-expanded': 'false' do %>
+                <span class="hide-menu">Fornecedores</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to categories_path, class: 'waves-effect waves-dark', 'aria-expanded': 'false' do %>
+                <span class="hide-menu">Categorias</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to subcategories_path, class: 'waves-effect waves-dark', 'aria-expanded': 'false' do %>
+                <span class="hide-menu">Subcategorias</span>
+              <% end %>
+            </li>
+          </ul>
         </li>
         <li>
           <%= link_to sellers_path, class: 'waves-effect waves-dark', 'aria-expanded': 'false' do %>
