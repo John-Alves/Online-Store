@@ -1,10 +1,12 @@
 class ProductEntriesController < ApplicationController
   before_action :set_product_entry, only: [:show, :edit, :update, :destroy]
+  before_action :get_products, only: [:edit, :new]
+  before_action :get_suppliers, only: [:edit, :new]
 
   # GET /product_entries
   # GET /product_entries.json
   def index
-    @product_entries = ProductEntry.all
+    @product_entries = ProductEntry.all.includes(:product, :supplier)
   end
 
   # GET /product_entries/1
@@ -25,13 +27,12 @@ class ProductEntriesController < ApplicationController
   # POST /product_entries.json
   def create
     @product_entry = ProductEntry.new(product_entry_params)
-
     respond_to do |format|
       if @product_entry.save
-        format.html { redirect_to @product_entry, notice: 'Product entry was successfully created.' }
+        format.html { redirect_to product_entries_path, notice: 'Entrada criada com sucesso.' }
         format.json { render :show, status: :created, location: @product_entry }
       else
-        format.html { render :new }
+        format.html { redirect_to product_entries_path, error: 'Erro ao criar entrada.' }
         format.json { render json: @product_entry.errors, status: :unprocessable_entity }
       end
     end
@@ -62,13 +63,20 @@ class ProductEntriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_product_entry
-      @product_entry = ProductEntry.find(params[:id])
-    end
+  def get_products
+    @products = Product.all.includes(:category, :subcategory)
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def product_entry_params
-      params.require(:product_entry).permit(:payment_date, :forecast_receipt_date, :receipt_date, :amount, :price, :observation, :product_id, :supplier_id)
-    end
+  def get_suppliers
+    @suppliers = Supplier.all
+  end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_product_entry
+    @product_entry = ProductEntry.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def product_entry_params
+    params.require(:product_entry).permit(:payment_date, :forecast_receipt_date, :receipt_date, :amount, :price, :observation, :product_id, :supplier_id)
+  end
 end

@@ -1,5 +1,11 @@
-<h1>New Product Entry</h1>
+<%
+  page_title = 'Nova Entrada'
+  page_path = [
+      { name: 'Inicio', link: root_path },
+      { name: 'Nova Entrada', link: '' },
+  ]
+%>
 
-<%= render 'form', product_entry: @product_entry %>
+<%= page_header_helper(page_title, page_path) %>
 
-<%= link_to 'Back', product_entries_path %>
+<%= render 'form', product_entry: @product_entry, url: product_entries_path %>
