@@ -1,68 +1,34 @@
 class ProductEntriesController < ApplicationController
-  before_action :set_product_entry, only: [:show, :edit, :update, :destroy]
+  before_action :set_product_entry, only: [:edit, :update, :destroy]
   before_action :get_products, only: [:edit, :new]
   before_action :get_suppliers, only: [:edit, :new]
 
-  # GET /product_entries
-  # GET /product_entries.json
   def index
     @product_entries = ProductEntry.all.includes(:product, :supplier)
   end
 
-  # GET /product_entries/1
-  # GET /product_entries/1.json
-  def show
-  end
-
-  # GET /product_entries/new
   def new
     @product_entry = ProductEntry.new
   end
 
-  # GET /product_entries/1/edit
   def edit
   end
 
-  # POST /product_entries
-  # POST /product_entries.json
   def create
     @product_entry = ProductEntry.new(product_entry_params)
-    respond_to do |format|
-      if @product_entry.save
-        format.html { redirect_to product_entries_path, notice: 'Entrada criada com sucesso.' }
-        format.json { render :show, status: :created, location: @product_entry }
-      else
-        format.html { redirect_to product_entries_path, error: 'Erro ao criar entrada.' }
-        format.json { render json: @product_entry.errors, status: :unprocessable_entity }
-      end
-    end
+    create_crud(@product_entry, product_entries_path)
   end
 
-  # PATCH/PUT /product_entries/1
-  # PATCH/PUT /product_entries/1.json
   def update
-    respond_to do |format|
-      if @product_entry.update(product_entry_params)
-        format.html { redirect_to @product_entry, notice: 'Product entry was successfully updated.' }
-        format.json { render :show, status: :ok, location: @product_entry }
-      else
-        format.html { render :edit }
-        format.json { render json: @product_entry.errors, status: :unprocessable_entity }
-      end
-    end
+    update_crud(@product_entry, product_entry_params, product_entries_path)
   end
 
-  # DELETE /product_entries/1
-  # DELETE /product_entries/1.json
   def destroy
-    @product_entry.destroy
-    respond_to do |format|
-      format.html { redirect_to product_entries_url, notice: 'Product entry was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    destroy_crud(@product_entry, product_entries_path)
   end
 
   private
+
   def get_products
     @products = Product.all.includes(:category, :subcategory)
   end

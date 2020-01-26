@@ -17,8 +17,10 @@ ActiveRecord::Schema.define(version: 2019_10_20_175352) do
 
   create_table "categories", force: :cascade do |t|
     t.string "description"
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
   create_table "product_balances", force: :cascade do |t|
@@ -40,12 +42,14 @@ ActiveRecord::Schema.define(version: 2019_10_20_175352) do
     t.integer "amount"
     t.decimal "price"
     t.string "observation"
+    t.bigint "user_id", null: false
     t.bigint "product_id", null: false
     t.bigint "supplier_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["product_id"], name: "index_product_entries_on_product_id"
     t.index ["supplier_id"], name: "index_product_entries_on_supplier_id"
+    t.index ["user_id"], name: "index_product_entries_on_user_id"
   end
 
   create_table "product_exits", force: :cascade do |t|
@@ -53,44 +57,54 @@ ActiveRecord::Schema.define(version: 2019_10_20_175352) do
     t.decimal "price"
     t.string "observation"
     t.decimal "comission"
+    t.bigint "user_id", null: false
     t.bigint "product_id", null: false
     t.bigint "seller_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["product_id"], name: "index_product_exits_on_product_id"
     t.index ["seller_id"], name: "index_product_exits_on_seller_id"
+    t.index ["user_id"], name: "index_product_exits_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
     t.string "title"
     t.string "description"
     t.decimal "comission"
+    t.bigint "user_id", null: false
     t.bigint "category_id"
     t.bigint "subcategory_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["subcategory_id"], name: "index_products_on_subcategory_id"
+    t.index ["user_id"], name: "index_products_on_user_id"
   end
 
   create_table "sellers", force: :cascade do |t|
     t.string "name"
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_sellers_on_user_id"
   end
 
   create_table "subcategories", force: :cascade do |t|
     t.string "description"
+    t.bigint "user_id", null: false
     t.bigint "category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_subcategories_on_category_id"
+    t.index ["user_id"], name: "index_subcategories_on_user_id"
   end
 
   create_table "suppliers", force: :cascade do |t|
     t.string "name"
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_suppliers_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -110,14 +124,21 @@ ActiveRecord::Schema.define(version: 2019_10_20_175352) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "categories", "users"
   add_foreign_key "product_balances", "product_entries"
   add_foreign_key "product_balances", "product_exits"
   add_foreign_key "product_balances", "products"
   add_foreign_key "product_entries", "products"
   add_foreign_key "product_entries", "suppliers"
+  add_foreign_key "product_entries", "users"
   add_foreign_key "product_exits", "products"
   add_foreign_key "product_exits", "sellers"
+  add_foreign_key "product_exits", "users"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "subcategories"
+  add_foreign_key "products", "users"
+  add_foreign_key "sellers", "users"
   add_foreign_key "subcategories", "categories"
+  add_foreign_key "subcategories", "users"
+  add_foreign_key "suppliers", "users"
 end

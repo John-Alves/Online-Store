@@ -1,65 +1,29 @@
 class SubcategoriesController < ApplicationController
-  before_action :set_subcategory, only: [:show, :edit, :update, :destroy]
+  before_action :set_subcategory, only: [:edit, :update, :destroy]
   before_action :get_categories, only: [:index, :new, :edit]
 
-  # GET /subcategories
-  # GET /subcategories.json
   def index
     @subcategories = Subcategory.includes(:category).all
   end
 
-  # GET /subcategories/1
-  # GET /subcategories/1.json
-  def show
-  end
-
-  # GET /subcategories/new
   def new
     @subcategory = Subcategory.new
   end
 
-  # GET /subcategories/1/edit
   def edit
   end
 
-  # POST /subcategories
-  # POST /subcategories.json
   def create
     @subcategory = Subcategory.new(subcategory_params)
-
-    respond_to do |format|
-      if @subcategory.save
-        format.html { redirect_to @subcategory, notice: 'Subcategory was successfully created.' }
-        format.json { render :show, status: :created, location: @subcategory }
-      else
-        format.html { render :new }
-        format.json { render json: @subcategory.errors, status: :unprocessable_entity }
-      end
-    end
+    create_crud(@subcategory, subcategories_path)
   end
 
-  # PATCH/PUT /subcategories/1
-  # PATCH/PUT /subcategories/1.json
   def update
-    respond_to do |format|
-      if @subcategory.update(subcategory_params)
-        format.html { redirect_to @subcategory, notice: 'Subcategory was successfully updated.' }
-        format.json { render :show, status: :ok, location: @subcategory }
-      else
-        format.html { render :edit }
-        format.json { render json: @subcategory.errors, status: :unprocessable_entity }
-      end
-    end
+    update_crud(@subcategory, subcategory_params, subcategories_path)
   end
 
-  # DELETE /subcategories/1
-  # DELETE /subcategories/1.json
   def destroy
-    @subcategory.destroy
-    respond_to do |format|
-      format.html { redirect_to subcategories_url, notice: 'Subcategory was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    destroy_crud(@subcategory, subcategories_path)
   end
 
   private

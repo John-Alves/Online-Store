@@ -1,64 +1,28 @@
 class ProductExitsController < ApplicationController
-  before_action :set_product_exit, only: [:show, :edit, :update, :destroy]
+  before_action :set_product_exit, only: [:edit, :update, :destroy]
 
-  # GET /product_exits
-  # GET /product_exits.json
   def index
     @product_exits = ProductExit.all
   end
 
-  # GET /product_exits/1
-  # GET /product_exits/1.json
-  def show
-  end
-
-  # GET /product_exits/new
   def new
     @product_exit = ProductExit.new
   end
 
-  # GET /product_exits/1/edit
   def edit
   end
 
-  # POST /product_exits
-  # POST /product_exits.json
   def create
     @product_exit = ProductExit.new(product_exit_params)
-
-    respond_to do |format|
-      if @product_exit.save
-        format.html { redirect_to @product_exit, notice: 'Product exit was successfully created.' }
-        format.json { render :show, status: :created, location: @product_exit }
-      else
-        format.html { render :new }
-        format.json { render json: @product_exit.errors, status: :unprocessable_entity }
-      end
-    end
+    create_crud(@product_exit, product_exit_path)
   end
 
-  # PATCH/PUT /product_exits/1
-  # PATCH/PUT /product_exits/1.json
   def update
-    respond_to do |format|
-      if @product_exit.update(product_exit_params)
-        format.html { redirect_to @product_exit, notice: 'Product exit was successfully updated.' }
-        format.json { render :show, status: :ok, location: @product_exit }
-      else
-        format.html { render :edit }
-        format.json { render json: @product_exit.errors, status: :unprocessable_entity }
-      end
-    end
+    update_crud(@product_exit, product_exit_params, product_exit_path)
   end
 
-  # DELETE /product_exits/1
-  # DELETE /product_exits/1.json
   def destroy
-    @product_exit.destroy
-    respond_to do |format|
-      format.html { redirect_to product_exits_url, notice: 'Product exit was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    destroy_crud(@product_exit, product_exit_path)
   end
 
   private

@@ -7,6 +7,7 @@ class CreateProductEntries < ActiveRecord::Migration[6.0]
       t.integer :amount
       t.decimal :price
       t.string :observation
+      t.references :user, null: false, foreign_key: true
       t.references :product, null: false, foreign_key: true
       t.references :supplier, null: true, foreign_key: true
 
