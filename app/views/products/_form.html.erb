@@ -40,7 +40,7 @@
             <div class="form-group col-md-8">
               <%= f.label :category_id, "Categoria" %><br />
               <% categories = @categories.map { |c| [c.description, c.id] } %>
-              <%= f.select :category_id, categories, {}, class: 'form-control form-control-line' %>
+              <%= f.select :category_id, categories, { include_blank: true  }, class: 'form-control form-control-line' %>
             </div>
           </div>
 
@@ -48,7 +48,7 @@
             <div class="form-group col-md-8">
               <%= f.label :subcategory_id, "Subategoria" %><br />
               <% subcategories = @subcategories.map { |s| [s.description, s.id] } %>
-              <%= f.select :subcategory_id, subcategories, {}, class: 'form-control form-control-line' %>
+              <%= f.select :subcategory_id, subcategories, { include_blank: true }, class: 'form-control form-control-line' %>
             </div>
           </div>
 

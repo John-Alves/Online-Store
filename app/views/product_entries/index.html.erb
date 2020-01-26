@@ -1,13 +1,13 @@
 <%
-  page_title = "Entrada de Produtos"
+  page_title = "Meus Pedidos"
   page_path = [
       { name: 'Inicio', link: root_path },
-      { name: 'Entrada de Produtos', link: root_path },
+      { name: 'Meus Pedidos', link: root_path },
   ]
   button = {
       link: new_product_entry_path,
       class: 'btn btn-info m-l-15',
-      content: '<i class="fa fa-plus-circle"></i> Criar'.html_safe
+      content: '<i class="fa fa-plus-circle"></i> Novo'.html_safe
   }
 %>
 <%= page_header_helper(page_title, page_path, button) %>
@@ -41,7 +41,7 @@
                   <td><%= product_entry.payment_date %></td>
 <!--                  <td><%#= product_entry.forecast_receipt_date %></td>-->
 <!--                  <td><%#= product_entry.receipt_date %></td>-->
-                  <td><%= product_entry.supplier.name %></td>
+                  <td><%= product_entry.supplier&.name %></td>
                   <td><%= product_entry.observation %></td>
 <!--                  <td><%#= link_to 'Show', product_entry %></td>-->
 <!--                  <td><%#= link_to 'Edit', edit_product_entry_path(product_entry) %></td>-->

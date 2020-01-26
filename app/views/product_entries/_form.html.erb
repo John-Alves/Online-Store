@@ -21,7 +21,7 @@
             <div class="form-group col-md-8">
               <%= f.label :product_id, "Produto" %><br />
               <% products = @products.map { |c| [
-                  "#{c.title} - #{c.category.description}",
+                  "#{c.title} - #{c.category&.description}",
                   c.id
               ] } %>
               <%= f.select :product_id, products, {}, class: 'form-control form-control-line' %>

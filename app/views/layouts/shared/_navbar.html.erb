@@ -6,9 +6,13 @@
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <%= link_to root_path, class: 'nav-link' do %>
-          <span class="hide-menu">Dashboard</span>
-        <% end %>
+        <%= link_to 'Dashboard', root_path, class: 'nav-link'%>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Minhas Vendas', product_exits_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Minhas Pedidos', product_entries_path, class: 'nav-link' %>
       </li>
       <li class="nav-item">
         <%= link_to sellers_path, class: 'nav-link' do %>
