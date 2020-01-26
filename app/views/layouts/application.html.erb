@@ -11,24 +11,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   </head>
 
-  <body class="skin-default-dark fixed-layout">
-    <%= render partial: 'layouts/shared/header' %>
-
-    <%= render partial: 'layouts/shared/sidebar' %>
-
+  <body>
+    <%= render partial: 'layouts/shared/navbar' %>
     <div id="main-wrapper">
-      <div class="blank-space hidden-sm-up"></div>
-
       <div class="page-wrapper">
         <%= configure_and_display_flash_messages %>
-
         <div class="container-fluid">
           <%= yield %>
         </div>
       </div>
     </div>
-    <br>
-    <br>
-    <%= render partial: 'layouts/shared/footer' %>
   </body>
 </html>
